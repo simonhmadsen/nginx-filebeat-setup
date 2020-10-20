@@ -1,0 +1,27 @@
+filebeat:
+  inputs:
+    - paths:
+      - /var/log/nginx/access.log
+  
+queue.mem:
+  events: 8000
+  flush.min_events: 1000
+  flush.timeout: 1s
+
+output.elasticsearch:
+  hosts: ["host.docker.internal:8080/api/v1/ingest/elastic-bulk"]
+  password: "$API-TOKEN"
+  setup.template.enabled: false
+  compression_level: 5
+  bulk_max_size: 200
+  worker: 1
+
+logging:
+  level: debug
+  to_files: true
+  to_syslog: false
+  files:
+    path: /var/log/filebeat
+    name: filebeat.log
+    keepfiles: 3
+
