@@ -8,8 +8,8 @@ services:
     volumes:
       - ./logs/nginx:/var/log/nginx
       - ./config/nginx/default.conf:/etc/nginx/conf.d/default.conf
-      # - ./nginx/conf/nginx.apm.conf:/etc/nginx/nginx.conf
-      - ./config/nginx/nginx.combined.conf:/etc/nginx/nginx.conf
+      - ./config/nginx/nginx.apm.conf:/etc/nginx/nginx.conf
+      # - ./config/nginx/nginx.combined.conf:/etc/nginx/nginx.conf
   filebeat:
     container_name: filebeat
     user: root
